@@ -161,7 +161,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 torch.manual_seed(30)
 
-model_id = "Goedel-LM/Goedel-Prover-V2-32B"
+model_id = "Goedel-LM/Goedel-Prover-V2-8B"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
 
@@ -197,7 +197,7 @@ inputs = tokenizer.apply_chat_template(chat, tokenize=True, add_generation_promp
 
 import time
 start = time.time()
-outputs = model.generate(inputs, max_new_tokens=32768)
+outputs = model.generate(inputs, max_new_tokens=8192)
 print(tokenizer.batch_decode(outputs))
 print(time.time() - start)
 ```
